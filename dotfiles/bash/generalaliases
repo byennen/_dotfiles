@@ -1,0 +1,32 @@
+# misc
+alias reload='. ~/.bash_profile'
+
+# directories
+alias code='cd $HOME/Documents/code/'
+alias sites='cd $HOME/sites/'
+alias desktop='cd $HOME/Desktop/'
+alias downloads='cd $HOME/Downloads/'
+alias leapfrog='cd $HOME/leapfrog/'
+
+# run mind app
+alias runleapfrog='$HOME/leapfrog/application/sandbox.py'
+
+# general
+alias home='cd ~'
+alias l='ls -lah'
+alias ls='ls -G'
+alias h='history'
+alias c='clear'
+alias g='grep -i'
+alias ..='cd ..'
+alias ...='cd ../..'
+alias top='top -o cpu'
+alias systail='tail -f /var/log/system.log'
+alias m="mate ."
+alias colorslist="set | egrep 'COLOR_\w*'"
+alias show='cat ~/.dirs'
+
+# useful command to find what you should be aliasing:
+alias profileme="history | awk '{print \$2}' | awk 'BEGIN{FS=\"|\"}{print \$1}' | sort | uniq -c | sort -n | tail -n 20 | sort -nr"
+alias hidefile='/usr/bin/SetFile -a "V"'
+alias showfile='/usr/bin/SetFile -a "v"'

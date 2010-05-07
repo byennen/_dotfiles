@@ -1,169 +1,39 @@
-source ~/.git-completion.bash
-source ~/.bashrc
-source ~/.gitaliases
+source ~/.bash/aliases
+source ~/.bash/completions
+source ~/.bash/paths
+source ~/.bash/config
+source ~/.bash/servers
+source ~/.bash/bashrc
 
-#path
-export PATH="/usr/local/bin:/usr/local/sbin:/usr/local/mysql/bin:$PATH"
+if [ -f ~/.bashrc ]; then
+  . ~/.bashrc
+fi
 
-#python for leapfrog sandbox
-export XML2_CONFIG=/usr/local/bin/xml2-config
+if [ -f ~/.localrc ]; then
+  . ~/.localrc
+fi
 
-#editor general 
-export EDITOR="/opt/local/bin/mate -w"
-export CVSEDITOR="/opt/local/bin/mate -w"
-export SVN_EDITOR="/opt/local/bin/mate -w"
+# Turn on advanced bash completion if the file exists (get it here: http://www.caliban.org/bash/index.shtml#completion)
+if [ -f /etc/bash_completion ]; then
+    . /etc/bash_completion
+fi
 
-# servers
-alias server='ssh -p 30000 byennen@67.23.27.131'
-alias obtiva='ssh deploy@obtiva.com'
+if [ ! -f ~/.dirs ]; then
+	touch ~/.dirs
+fi
 
-# General
-alias code='cd $HOME/Documents/code/'
-alias sites='cd $HOME/sites/'
-alias desktop='cd $HOME/Desktop/'
-alias downloads='cd $HOME/Downloads/'
-alias leapfrog='cd $HOME/leapfrog/'
-alias runleapfrog='$HOME/leapfrog/application/sandbox.py'
+# readline settings
+bind "set completion-ignore-case on" 
+bind "set bell-style none" # No bell, because it's damn annoying
+bind "set show-all-if-ambiguous On" # this allows you to automatically show completion without double tab-ing
 
-
-#######
-# GIT #
-#######
-
-alias gst='git status'
-alias gl='git pull'
-alias gp='git push'
-alias gpa='git push-all' # see [alias] in ~/.gitconfig
-alias gd='git diff | mate'
-alias ga='git add'
-alias gcl='git config --list'
-alias gc='git commit -v'
-alias gca='git commit -v -a'
-alias gb='git branch'
-alias gbc='git branch --color'
-alias gba='git branch -a'
-alias gco='git checkout'
-alias gdc='git-svn dcommit'
-alias gk='gitk --all &'
-alias gpatch='git diff master -p'
-alias gitrm="git stat | grep deleted | awk '{print $3}' | xargs git rm"
-alias gitx="open -b nl.frim.GitX"
-
-parse_git_branch() {
-  git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
+save (){
+	command sed "/!$/d" ~/.dirs > ~/.dirs1; \mv ~/.dirs1 ~/.dirs; echo "$@"=\"`pwd`\" >> ~/.dirs; source ~/.dirs ; 
 }
-# PS1="\w\$(parse_git_branch):"
+source ~/.dirs  # Initialization for the above 'save' facility: source the .dirs file
+shopt -s cdable_vars # set the bash option so that no '$' is required when using the above facility
 
-
-#######
-# SVN #
-#######
-export SVN_USER="lanceennen"
-alias sup='svn up' # trust me 3 chars makes a different
-alias sst='svn st' # local file changes
-alias sstu='svn st -u' # remote repository changes
-alias scom='svn commit' # commit
-alias svnclear='find . -name .svn -print0 | xargs -0 rm -rf' # removes all .svn folders from directory recursively
-alias svnaddall='svn status | grep "^\?" | awk "{print \$2}" | xargs svn add' # adds all unadded files
-
-alias svns='svn status'
-alias svnci='svn ci'
-alias svna='svn add'
-alias svnr='svn remove'
-alias svn_branch_start='svn log --verbose --stop-on-copy .'
-
-alias svnaddall='svn st | grep "?" | sed -e "s/? *//" | xargs svn add'
-
-#########
-# MySQL #
-#########
-
-alias start_mysql='sudo mysqld_safe --user=mysql &'
-
-
-#########
-# SHELL #
-#########
-
-function pwdcopy() {
-	pwd | pbcopy
-}
-
-function hf() { 
-  history | grep $1 
-}
-
-function findgrep {
-  find * -exec grep -l "$1" {} \;
-}
-
-function findname {
-  find * -name "$1"
-}
-
-
-#########
-# RAILS #
-#########
-alias ss='ruby ./script/server'
-alias ss2='./script/server -p 3001 -e development tail-f log/development.log'
-alias sc='script/console'
-alias console="ruby script/console development"
-alias gen="ruby script/generate"
-alias destroy="ruby script/destroy"
-alias jsa="script/js_autotest"
-alias cdm='cap deploy deploy:migrate'
-alias model='script/generate model'
-alias controller='script/generate controller'
-alias migration='script/generate migration'
-alias migrate='rake db:migrate'
-alias rollback='rake db:rollback'
-alias dtp='rake db:test:prepare'
-alias redo="rake db:migrate && rake db:rollback"
-alias sr='rake spec'
-alias rt='rake test'
-alias rf='rake features'
-
-# capistrano
-alias cap1="cap _1.4.1_"
-alias capst="cap1 show_tasks"
-alias capstg="cap1 show_tasks | grep "
-
-# tail log
-alias log='tail -f -0 ./log/*.log'
-alias taildev='tail -f log/development.log'
-alias tailtest='tail -f log/test.log'
-
-# rdoc
-alias rdoc_ar='open ~/gems/rails/activerecord/doc/index.html'
-alias rdoc_ap='open ~/gems/rails/actionpack/doc/index.html'
-alias rdoc_as='open ~/gems/rails/activesupport/doc/index.html'
-
-##############
-# JAVASCRIPT #
-##############
-
-export BROWSERS=safari,firefox
-
-###########
-# GENERAL #
-###########
-alias home='cd ~' # the tilda is too hard to reach
-alias l='ls -lah' # l for list style, a for all including hidden, h for human readable file sizes
-alias ls='ls -G'
-alias h='history' # shortcut for history
-alias c='clear' # shortcut to clear your terminal
-alias g='grep -i'  #case insensitive grep
-alias ..='cd ..' # move up 1 dir
-alias ...='cd ../..' # move up 2 dirs
-alias eprof='mate ~/.bash_profile' # because i edit my bash_profile a lot with new things
-alias sprof='source ~/.bash_profile' # same as previous, after editing you have to source it for the 
-alias ducks='du -cks * | sort -rn|head -11' # Lists the size of all the folders$
-alias top='top -o cpu'
-alias systail='tail -f /var/log/system.log'
-alias m="mate ."
-
-# Setting PATH for MacPython 2.6
-# The orginal version is saved in .bash_profile.pysave
-# PATH="/Library/Frameworks/Python.framework/Versions/2.6/bin:${PATH}"
-# export PATH
+# history (bigger size, no duplicates, always append):
+export HISTCONTROL=erasedups
+export HISTSIZE=10000
+shopt -s histappend

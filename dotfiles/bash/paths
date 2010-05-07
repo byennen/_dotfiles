@@ -1,0 +1,5 @@
+export PATH="~/bin:/usr/local/homebrew/bin:/usr/local/bin:/usr/local/sbin:/usr/local/mysql/bin:/usr/local/git/bin:$PATH"
+export MANPATH="/usr/local/man:/usr/local/mysql/man:/usr/local/git/man:$MANPATH"
+
+#for leapfrog sandbox
+export XML2_CONFIG=/usr/local/bin/xml2-config

@@ -1,0 +1,15 @@
+export SVN_USER="lanceennen"
+alias sup='svn up'
+alias sst='svn st'
+alias sstu='svn st -u' # remote repository changes
+alias scom='svn commit' # commit
+alias svnclear='find . -name .svn -print0 | xargs -0 rm -rf' # removes all .svn folders from directory recursively
+alias svnaddall='svn status | grep "^\?" | awk "{print \$2}" | xargs svn add' # adds all unadded files
+
+alias svns='svn status'
+alias svnci='svn ci'
+alias svna='svn add'
+alias svnr='svn remove'
+alias svn_branch_start='svn log --verbose --stop-on-copy .'
+
+alias svnaddall='svn st | grep "?" | sed -e "s/? *//" | xargs svn add'

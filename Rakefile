@@ -34,3 +34,4 @@ task :install do
   installer = ShellMadnessInstaller.new
   installer.link_files
 end
+
