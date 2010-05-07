@@ -1,0 +1,8 @@
+alias g='git'
+alias ls='ls -GFh'
+alias ll='ls -GFhl'
+alias rdoc='rdoc --ri --line-numbers --all'
+alias ri='ri -Tf ansi'
+alias ss='./script/server'
+alias sc='./script/console'
+alias cycle_passenger='touch tmp/restart.txt'
