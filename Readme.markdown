@@ -3,7 +3,7 @@
 
 2. cd to wherever you want to keep the source files
 
-        git clone git://github.com/njackson/zsh-dotfiles.git
+        git clone git://github.com/byennen/byennen-dotfiles.git
         rake install
 
 3. enjoy!
