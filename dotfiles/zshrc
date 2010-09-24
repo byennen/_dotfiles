@@ -11,8 +11,8 @@ if [[ $(uname) == Darwin ]]; then
 elif [[ $(uname) == Linux ]]; then
   source ~/.zsh/platform/linux.zsh
 fi
-
-if [[ -s ~/.rvm/scripts/rvm ]]
-then
-  source ~/.rvm/scripts/rvm
-fi
+# removing rvm
+# if [[ -s "$HOME/.rvm/scripts/rvm" ]]
+# then
+#   source "$HOME/.rvm/scripts/rvm"
+# fi

@@ -1,4 +1,4 @@
-export PATH=/usr/local/bin:$PATH
+export PATH="~/bin:/usr/local/homebrew/bin:/usr/local/bin:/usr/local/sbin:/usr/local/mysql/bin:/usr/local/git/bin:$PATH"
 
 # Our list of directorys we can cd to from anywhere
 export CDPATH=.:~/workspace:~/projects:~/src:~/Documents
