@@ -20,6 +20,7 @@ alias gba='git branch -a'
 alias gco='git checkout'
 alias gdc='git-svn dcommit'
 alias gk='gitk --all &'
+alias gdelete='git ls-files --deleted | xargs git rm'
 
 alias gpatch='git diff master -p'
 # alias up='sake git:update' - need to priorities origin vs git-svn

@@ -1,2 +1,0 @@
-export PS1='\W\[\e[0;31m\]$(vcprompt)\[\e[0m\]:'
-export EDITOR="mate -w"
