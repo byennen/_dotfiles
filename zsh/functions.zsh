@@ -18,3 +18,18 @@ function mysqlredo {
   mysqladmin drop $1
   mysqladmin create $1
 }
+
+#Obtiva
+function deploy_obtiva {
+	cd $HOME/Sites/qa.obtiva.com
+	git pull
+	heroku db:push --app obtiva-home-staging
+	git push heroku-staging master
+}
+
+function deploy_obtiva_production {
+	cd $HOME/Sites/qa.obtiva.com
+	git pull
+	heroku db:push --app obtiva-home
+	git push heroku master
+}

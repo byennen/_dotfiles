@@ -1,4 +1,9 @@
-export PATH="~/bin:/usr/local/homebrew/bin:/usr/local/bin:/usr/local/sbin:/usr/local/mysql/bin:/usr/local/git/bin:$PATH"
+export PATH=/usr/local/bin:$PATH
+export PATH=/usr/local/sbin:$PATH
+export PATH=/usr/local/mysql/bin:$PATH
+export PATH=/usr/local/git/bin:$PATH
+export PATH=/bin:/usr/local/homebrew/bin:$PATH
+export GEM_HOME=/usr/local/Cellar/gems/1.8
 
 # Our list of directorys we can cd to from anywhere
 export CDPATH=.:~/workspace:~/projects:~/src:~/Documents

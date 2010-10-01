@@ -49,7 +49,7 @@ alias svnaddall='svn st | grep "?" | sed -e "s/? *//" | xargs svn add'
 
 alias server='ssh -p 30000 byennen@67.23.27.131'
 
-alias obtiva='cd ./Sites/qa.obtiva.com'
+alias obtiva='cd $HOME/Sites/qa.obtiva.com'
 
 alias ss='ruby ./script/server'
 alias ss2='./script/server -p 3001 -e development tail-f log/development.log'
