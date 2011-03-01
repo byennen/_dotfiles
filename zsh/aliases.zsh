@@ -49,24 +49,22 @@ alias svnaddall='svn st | grep "?" | sed -e "s/? *//" | xargs svn add'
 
 alias server='ssh -p 30000 byennen@67.23.27.131'
 
+# sites
 alias obtiva='cd $HOME/Sites/qa.obtiva.com'
+alias ra='cd $HOME/Sites/restaurants-america.com'
 
-alias ss='ruby ./script/server'
-alias ss2='./script/server -p 3001 -e development tail-f log/development.log'
-alias sc='script/console'
-alias console="ruby script/console development"
-alias gen="ruby script/generate"
-alias destroy="ruby script/destroy"
-alias jsa="script/js_autotest"
-alias cdm='cap deploy deploy:migrate'
-alias model='script/generate model'
-alias controller='script/generate controller'
-alias migration='script/generate migration'
+alias ss='rails server'
+alias ss2='rails server -p 3001 -e development tail-f log/development.log'
+alias sc='rails console'
+alias console="ruby rails console development"
+alias destroy="rails destroy"
+alias model='rails generate model'
+alias controller='rails generate controller'
+alias migration='rails generate migration'
 alias migrate='rake db:migrate'
 alias rollback='rake db:rollback'
-alias dtp='rake db:test:prepare'
 alias redo="rake db:migrate && rake db:rollback"
-alias sr='rake spec'
+alias rs='rake spec'
 alias rt='rake test'
 alias rf='rake features'
 
@@ -83,10 +81,6 @@ alias code='cd $HOME/Documents/code/'
 alias sites='cd $HOME/sites/'
 alias desktop='cd $HOME/Desktop/'
 alias downloads='cd $HOME/Downloads/'
-alias leapfrog='cd $HOME/leapfrog/'
-
-# run mind app
-alias runleapfrog='$HOME/leapfrog/application/sandbox.py'
 
 # general
 alias home='cd ~'
