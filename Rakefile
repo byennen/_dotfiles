@@ -1,5 +1,9 @@
 require 'fileutils'
 
+def info_install(pkg)
+  puts "* Installing #{pkg}"
+end
+
 class ShellInstaller
   include FileUtils::Verbose
   
@@ -9,12 +13,12 @@ class ShellInstaller
   
   def link_files
     
-    puts "doing dotfiles..."
+    info_install 'dotfiles'
     dotfiles.each do |dotfile|
       ln_sf File.expand_path(dotfile), File.expand_path("~/.#{File.basename(dotfile)}")
     end
 
-    puts "doing zshell..."
+    info_install 'zshell'
     ln_sf File.expand_path("zsh"), File.expand_path("~/.zsh")
   end
 
@@ -26,10 +30,28 @@ namespace :install do
     installer = ShellInstaller.new
     installer.link_files
   end
+  
+  task :homebrew do
+    info_install 'homebrew'
+    puts 'You can ignore this message: "/usr/local/.git already exists!"'
+    system 'ruby -e "$(curl -fsSL https://gist.github.com/raw/323731/install_homebrew.rb)"'
+  end
+
+  task :brews => [:homebrew] do
+    system <<-EOF
+      brew install mysql imagemagick ack macvim nginx git \
+      colordiff colormake
+    EOF
+  end
+
+  task :rvm do
+    info_install 'RVM'
+    system '/bin/bash -c "bash < <( curl http://rvm.beginrescueend.com/releases/rvm-install-head )"'
+  end
 
   desc "Install/Update my Janus fork"
   task :vim do
-    puts "doing vim..."
+    info_install 'Janus'
     if File.directory?('~/.vim') 
       %x(cd ~/.vim ; rake)
     else
@@ -37,7 +59,7 @@ namespace :install do
     end
   end
 
-  task :all => [:stuff, :vim]
+  task :all => [:stuff, :brews, :rvm, :vim]
 end
 
-task :default => 'install:all'
+task :default => ['install:all']
