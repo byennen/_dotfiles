@@ -5,5 +5,8 @@
 
         git clone git://github.com/byennen/byennen-dotfiles.git
         rake install:all
+        
+3. Issue zsh command
+        chsh -s /bin/zsh
 
-3. enjoy!
+4. enjoy!
