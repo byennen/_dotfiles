@@ -46,7 +46,7 @@ namespace :install do
 
   task :rvm do
     info_install 'RVM'
-    system '/bin/bash -c "bash < <( curl http://rvm.beginrescueend.com/releases/rvm-install-head )"'
+    system '/bin/bash -c "bash < <(curl -s https://rvm.beginrescueend.com/install/rvm)"'
   end
 
   desc "Install/Update my Janus fork"
