@@ -58,8 +58,18 @@ namespace :install do
       %x(git clone git://github.com/byennen/janus.git ~/.vim ; cd ~/.vim ; rake)
     end
   end
+  
+  desc "Reminder message"
+  task :reminder do
+    puts '****************************BYENNEN-DOTFILES****************************'
+    puts 'Install is almost complete. Please open a new terminal window.'
+    puts 'Run each of these commands one by one to use rvm ruby 1.8.7 as default over system default (osx install)'
+    puts 'rvm install 1.8.7'
+    puts 'rvm system ; rvm gemset export system.gems ; rvm 1.8.7 ; rvm gemset import system'
+    puts 'rvm --default 1.8.7'
+  end
 
-  task :all => [:stuff, :brews, :rvm, :vim]
+  task :all => [:stuff, :brews, :rvm, :vim, :reminder]
 end
 
 task :default => ['install:all']
