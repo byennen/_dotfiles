@@ -40,8 +40,21 @@ namespace :install do
   task :brews => [:homebrew] do
     system <<-EOF
       brew install mysql imagemagick ack macvim nginx git \
-      colordiff colormake
+      colordiff colormake wget
     EOF
+  end
+  
+  task :mysql do
+    puts 'Creating the LaunchAgents directory...'
+    system '-p ~/Library/LaunchAgents'
+
+    puts 'Configuring MySQL...'
+    system 'unset TMPDIR'
+    system 'mysql_install_db --verbose --user=`whoami` --basedir="$(brew --prefix mysql)" --datadir=/usr/local/var/mysql --tmpdir=/tmp'
+
+    puts 'Adding MySQL to LaunchAgents...'
+    system 'cp /usr/local/Cellar/mysql/5.5.14/com.mysql.mysqld.plist ~/Library/LaunchAgents/'
+    system 'launchctl load -w ~/Library/LaunchAgents/com.mysql.mysqld.plist'
   end
 
   task :rvm do
@@ -69,7 +82,7 @@ namespace :install do
     puts 'rvm --default 1.8.7'
   end
 
-  task :all => [:stuff, :brews, :rvm, :vim, :reminder]
+  task :all => [:stuff, :brews, :mysql, :rvm, :vim, :reminder]
 end
 
 task :default => ['install:all']
