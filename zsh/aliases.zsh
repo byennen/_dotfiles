@@ -77,7 +77,6 @@ alias tailtest='tail -f log/test.log'
 alias reload='. ~/.bash_profile'
 
 # directories
-alias code='cd $HOME/Documents/code/'
 alias sites='cd $HOME/sites/'
 alias desktop='cd $HOME/Desktop/'
 alias downloads='cd $HOME/Downloads/'

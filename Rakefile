@@ -1,88 +1,25 @@
 require 'fileutils'
+require 'erb'
 
-def info_install(pkg)
-  puts "* Installing #{pkg}"
+require './tasks/util'
+
+Dir['tasks/*.rake'].each{|f| load f }
+
+TOPLEVEL = File.dirname(__FILE__)
+
+
+# TODO: update this so its correct
+namespace :new do
+  desc "Change your shell to ZSH"
+  task :zsh do
+    system "chsh -s `which zsh` #{ENV['USER']}"
+  end
 end
 
-class ShellInstaller
-  include FileUtils::Verbose
-  
-  def dotfiles
-    Dir.glob("dotfiles/*")
-  end
-  
-  def link_files
-    
-    info_install 'dotfiles'
-    dotfiles.each do |dotfile|
-      ln_sf File.expand_path(dotfile), File.expand_path("~/.#{File.basename(dotfile)}")
-    end
+if osx?
+  desc "Everything a new OS X laptop needs"
+  task :new => ['new:zsh', 'install:vim', 'install:rvm', 'install:brews']
 
-    info_install 'zshell'
-    ln_sf File.expand_path("zsh"), File.expand_path("~/.zsh")
-  end
-
+  desc "Run the :new task and link dotfiles"
+  task :default => [:new, 'link:all']
 end
-
-namespace :install do
-  desc "Install my stuff to home directory"
-  task :stuff do
-    installer = ShellInstaller.new
-    installer.link_files
-  end
-  
-  task :homebrew do
-    info_install 'homebrew'
-    puts 'You can ignore this message: "/usr/local/.git already exists!"'
-    system 'ruby -e "$(curl -fsSL https://gist.github.com/raw/323731/install_homebrew.rb)"'
-  end
-
-  task :brews => [:homebrew] do
-    system <<-EOF
-      brew install mysql imagemagick ack macvim nginx git \
-      colordiff colormake wget
-    EOF
-  end
-  
-  task :mysql do
-    puts 'Creating the LaunchAgents directory...'
-    system '-p ~/Library/LaunchAgents'
-
-    puts 'Configuring MySQL...'
-    system 'unset TMPDIR'
-    system 'mysql_install_db --verbose --user=`whoami` --basedir="$(brew --prefix mysql)" --datadir=/usr/local/var/mysql --tmpdir=/tmp'
-
-    puts 'Adding MySQL to LaunchAgents...'
-    system 'cp /usr/local/Cellar/mysql/5.5.14/com.mysql.mysqld.plist ~/Library/LaunchAgents/'
-    system 'launchctl load -w ~/Library/LaunchAgents/com.mysql.mysqld.plist'
-  end
-
-  task :rvm do
-    info_install 'RVM'
-    system '/bin/bash -c "bash < <(curl -s https://rvm.beginrescueend.com/install/rvm)"'
-  end
-
-  desc "Install/Update my Janus fork"
-  task :vim do
-    info_install 'Janus'
-    if File.directory?('~/.vim') 
-      %x(cd ~/.vim ; rake)
-    else
-      %x(git clone git://github.com/byennen/janus.git ~/.vim ; cd ~/.vim ; rake)
-    end
-  end
-  
-  desc "Reminder message"
-  task :reminder do
-    puts '****************************BYENNEN-DOTFILES****************************'
-    puts 'Install is almost complete. Please open a new terminal window.'
-    puts 'Run each of these commands one by one to use rvm ruby 1.8.7 as default over system default (osx install)'
-    puts 'rvm install 1.8.7'
-    puts 'rvm system ; rvm gemset export system.gems ; rvm 1.8.7 ; rvm gemset import system'
-    puts 'rvm --default 1.8.7'
-  end
-
-  task :all => [:stuff, :brews, :mysql, :rvm, :vim, :reminder]
-end
-
-task :default => ['install:all']
