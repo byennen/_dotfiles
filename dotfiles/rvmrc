@@ -1,1 +1,3 @@
-export rvm_pretty_print_flag=1export rvm_path="/Users/byennen/.rvm"
+export rvm_pretty_print_flag=1
+export rvm_path="/Users/byennen/.rvm"
+
