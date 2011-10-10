@@ -50,8 +50,7 @@ alias svnaddall='svn st | grep "?" | sed -e "s/? *//" | xargs svn add'
 alias server='ssh -p 30000 byennen@67.23.27.131'
 
 # sites
-alias obtiva='cd $HOME/Sites/qa.obtiva.com'
-alias ra='cd $HOME/Sites/restaurants-america.com'
+alias apex='cd $HOME/Sites/Apex'
 
 alias ss='rails server'
 alias ss2='rails server -p 3001 -e development tail-f log/development.log'
