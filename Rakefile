@@ -68,7 +68,7 @@ namespace :install do
     if File.directory?('~/.vim') 
       %x(cd ~/.vim ; rake)
     else
-      %x(git clone git://github.com/byennen/janus.git ~/.vim ; cd ~/.vim ; rake)
+      %x(git clone git://github.com/carlhuda/janus.git ~/.vim ; cd ~/.vim ; rake)
     end
   end
   
