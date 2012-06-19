@@ -47,7 +47,9 @@ alias svn_branch_start='svn log --verbose --stop-on-copy .'
 
 alias svnaddall='svn st | grep "?" | sed -e "s/? *//" | xargs svn add'
 
+#servers
 alias server='ssh -p 30000 byennen@67.23.27.131'
+alias hifive='ssh ec2-user@ec2-184-73-149-17.compute-1.amazonaws.com -i $HOME/sites/hifivesports/hifivesports.pem'
 
 # sites
 alias apex='cd $HOME/Sites/Apex'
