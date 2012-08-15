@@ -50,7 +50,9 @@ alias svnaddall='svn st | grep "?" | sed -e "s/? *//" | xargs svn add'
 #servers
 alias server='ssh -p 30000 byennen@67.23.27.131'
 alias hifive='ssh ec2-user@184.72.247.248 -i $HOME/sites/hifivesports/hifivesports.pem'
-alias altimarc='ssh ubuntu@ec2-107-21-119-78.compute-1.amazonaws.com -i $HOME/Sites/channels/altimarc-ec2.pem'
+alias altimarc_staging='ssh ubuntu@ec2-107-21-119-78.compute-1.amazonaws.com -i $HOME/Sites/channels/altimarc-ec2.pem'
+alias altimarc_production='ssh ubuntu@ec2-107-22-185-71.compute-1.amazonaws.com -i $HOME/Sites/channels/altimarc-ec2.pem'
+
 
 # sites
 alias apex='cd $HOME/Sites/Apex'
