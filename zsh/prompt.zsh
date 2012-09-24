@@ -55,7 +55,3 @@ function git_prompt_info() {
 
 export PS1='%{$reset_color$fg[gray]%}%2~%{$reset_color$bold_color$fg[green]%}$(git_prompt_info)>%{$reset_color%} '
 
-if [ $VIM ]; then
-  export PS1='\h:\w\$ '
-fi
-
