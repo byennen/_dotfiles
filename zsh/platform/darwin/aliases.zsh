@@ -1,8 +1,0 @@
-alias port='sudo port -v'
-alias rmate='mate Rakefile README app bin config doc db lib public script spec test stories features examples'
-alias vi='mvim -p'
-alias vim='mvim -p'
-alias vimr='mvim -p --remote-silent'
-alias gvim='mvim -p'
-alias e='open -a Emacs'
-alias m='mate'
