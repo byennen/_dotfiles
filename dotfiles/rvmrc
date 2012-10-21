@@ -1,3 +1,0 @@
-export rvm_pretty_print_flag=1
-export rvm_path="/Users/byennen/.rvm"
-export CC=/usr/bin/gcc-4.2rvm_auto_reload_flag=1
