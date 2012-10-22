@@ -15,11 +15,6 @@ class ShellInstaller
     Dir.glob("myfiles/*")
   end
 
-  def oh_my_zsh
-    info_install 'OH-MY-ZSH'
-    %x(curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh)
-  end
-
   def link_files
     info_install 'dotfiles'
     myfiles.each do |file|
@@ -29,25 +24,33 @@ class ShellInstaller
     dotfiles.each do |dotfile|
       ln_sf File.expand_path(dotfile), File.expand_path("~/.#{File.basename(dotfile)}")
     end
-  end
- 
-  def pow
-    info_install 'POW!'
-    %x(curl get.pow.cx | sh)
-  end
+  end 
+
 end
 
 namespace :install do
   desc "Install OH MY ZSH"
   task :zsh do
-    installer = ShellInstaller.new
-    installer.oh_my_zsh
+    info_install 'OH-MY-ZSH'
+    %x(curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh)
   end
 
   desc "Install POW!"  
   task :pow do
-    installer = ShellInstaller.new
-    installer.pow
+    info_install 'POW!'
+    %x(curl get.pow.cx | sh)
+  end
+
+  desc "Install rbenv"  
+  task :rbenv do
+    info_install 'rbenv'
+    if File.directory?('~/.rbenv')
+      %x(cd ~/.rbenv ; git pull)
+      %x(cd ~/.rbenv/plugins/ruby-build ; git pull )
+    else
+      %x(git clone git://github.com/sstephenson/rbenv.git ~/.rbenv)
+      %x(cd ~/.rbenv ; mkdir -p ~/.rbenv/plugins ; cd ~/.rbenv/plugins ; git clone git://github.com/sstephenson/ruby-build.git)
+    end
   end
 
   desc "Install my custom overrides for OH MY ZS"
@@ -79,5 +82,5 @@ namespace :install do
     end
   end
   
-  task :all => [:zsh, :pow, :custom, :brews, :vim]
+  task :all => [:zsh, :pow, :rbenv, :custom, :brews, :vim]
 end
