@@ -58,3 +58,5 @@ export PAGER=less
 export LESS="-erX"
 
 export RUBYOPT=rubygems
+
+eval "$(rbenv init -)"
