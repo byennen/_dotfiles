@@ -39,7 +39,7 @@ export PATH=/usr/local/sbin:$PATH
 export PATH=/usr/local/mysql/bin:$PATH
 export PATH=/usr/local/git/bin:$PATH
 export PATH=/bin:/usr/local/homebrew/bin:$PATH
-export PATH=$HOME/.rbenv/bin:$PATH
+#export PATH=$HOME/.rbenv/bin:$PATH
 
 # Our list of directorys we can cd to from anywhere
 export CDPATH=.:~/Sites:~/Code:~/src:~/Documents
@@ -59,4 +59,3 @@ export LESS="-erX"
 
 export RUBYOPT=rubygems
 
-eval "$(rbenv init -)"
