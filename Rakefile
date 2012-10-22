@@ -53,6 +53,17 @@ namespace :install do
     end
   end
 
+  desc "Install rubies"  
+  task :rubies => [:rbenv] do
+    info_install 'rubies'
+    unless File.directory?('~/.rbenv/versions/1.9.3-p286')
+      %x(rbenv rehash ; rbenv install 1.9.3-p286)
+    end
+    unless File.directory?('~/.rbenv/versions/1.9.3-p194')
+      %x(rbenv rehash ; rbenv install 1.9.3-p194)
+    end
+  end
+
   desc "Install my custom overrides for OH MY ZS"
   task :custom do
     installer = ShellInstaller.new
@@ -82,5 +93,5 @@ namespace :install do
     end
   end
   
-  task :all => [:zsh, :pow, :rbenv, :custom, :brews, :vim]
+  task :all => [:zsh, :pow, :rbenv, :rubies, :custom, :brews, :vim]
 end
