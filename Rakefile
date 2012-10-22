@@ -68,7 +68,7 @@ namespace :install do
   task :brews => [:homebrew] do
     system <<-EOF
       brew install imagemagick ack macvim git \
-      colordiff colormake wget rbenv ruby-build
+      colordiff colormake wget
     EOF
   end
 
