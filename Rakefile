@@ -30,7 +30,11 @@ class ShellInstaller
       ln_sf File.expand_path(dotfile), File.expand_path("~/.#{File.basename(dotfile)}")
     end
   end
-
+ 
+  def pow
+    info_install 'POW!'
+    %x(curl get.pow.cx | sh)
+  end
 end
 
 namespace :install do
@@ -38,6 +42,12 @@ namespace :install do
   task :zsh do
     installer = ShellInstaller.new
     installer.oh_my_zsh
+  end
+
+  desc "Install POW!"  
+  task :pow do
+    installer = ShellInstaller.new
+    installer.pow
   end
 
   desc "Install my custom overrides for OH MY ZS"
@@ -55,7 +65,7 @@ namespace :install do
   task :brews => [:homebrew] do
     system <<-EOF
       brew install imagemagick ack macvim git \
-      colordiff colormake wget rbenv
+      colordiff colormake wget rbenv ruby-build
     EOF
   end
 
@@ -65,9 +75,9 @@ namespace :install do
     if File.directory?('~/.vim')
       %x(cd ~/.vim ; rake)
     else
-      %x(git clone git://github.com/carlhuda/janus.git ~/.vim ; cd ~/.vim ; rake)
+      %x(git clone git@github.com:byennen/janus.git ~/.vim ; cd ~/.vim ; rake)
     end
   end
   
-  task :all => [:zsh, :custom, :brews, :vim]
+  task :all => [:zsh, :pow, :custom, :brews, :vim]
 end
