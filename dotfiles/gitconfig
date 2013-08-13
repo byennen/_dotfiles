@@ -20,7 +20,7 @@
   untracked = cyan
 [merge]
   summary = true
-  tool = opendiff
+  tool = vimdiff
 [core]
   legacyheaders = false
 [repack]
@@ -38,6 +38,7 @@
 [diff "ruby"]
   funcname = ^ *\\(\\(class\\|module\\|def\\) .*\\)
 [core]
-  editor = mate -w
+  editor = mine
   excludesfile = ~/.gitignore
 	whitespace = fix
+	quotepath = false

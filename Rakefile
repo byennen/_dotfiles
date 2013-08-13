@@ -54,7 +54,7 @@ namespace :install do
   end
 
   desc "Install rubies"  
-  task :rubies => [:rbenv] do
+  task :rubies do
     info_install 'rubies'
     unless File.directory?('~/.rbenv/versions/1.9.3-p385')
       %x(rbenv rehash ; rbenv install 1.9.3-p385)
@@ -73,10 +73,10 @@ namespace :install do
     system 'ruby -e "$(curl -fsSkL raw.github.com/mxcl/homebrew/go)"'
   end
 
-  task :brews => [:homebrew] do
+  task :brews do
     system <<-EOF
       brew install imagemagick ack macvim git \
-      colordiff colormake wget
+      colordiff wget
     EOF
   end
 
