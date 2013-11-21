@@ -56,8 +56,8 @@ namespace :install do
   desc "Install rubies"  
   task :rubies do
     info_install 'rubies'
-    unless File.directory?('~/.rbenv/versions/1.9.3-p385')
-      %x(rbenv rehash ; rbenv install 1.9.3-p385)
+    unless File.directory?('~/.rbenv/versions/2.0.0-p247')
+      %x(rbenv rehash ; rbenv install 2.0.0-p247)
     end
   end
 
