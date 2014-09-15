@@ -35,12 +35,6 @@ namespace :install do
     %x(curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh)
   end
 
-  desc "Install POW!"  
-  task :pow do
-    info_install 'POW!'
-    %x(curl get.pow.cx | sh)
-  end
-
   desc "Install rbenv"  
   task :rbenv do
     info_install 'rbenv'
@@ -69,13 +63,13 @@ namespace :install do
   
   task :homebrew do
     info_install 'homebrew'
-    puts 'You can ignore this message: "/usr/local/.git already exists!"'
-    system 'ruby -e "$(curl -fsSkL raw.github.com/mxcl/homebrew/go)"'
+    puts 'Install Linux HomeBrew'
+    system 'ruby -e "$(wget -O- https://raw.github.com/Homebrew/linuxbrew/go/install)"'
   end
 
   task :brews do
     system <<-EOF
-      brew install imagemagick ack macvim git \
+      brew install imagemagick ack git npm \
       colordiff wget
     EOF
   end
