@@ -84,5 +84,5 @@ namespace :install do
     end
   end
   
-  task :all => [:zsh, :pow, :rbenv, :rubies, :custom, :brews, :vim]
+  task :all => [:zsh, :rbenv, :rubies, :custom, :brews, :vim]
 end
