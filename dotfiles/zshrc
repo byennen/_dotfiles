@@ -41,10 +41,10 @@ export PATH=/usr/local/git/bin:$PATH
 export PATH=/bin:/usr/local/homebrew/bin:$PATH
 export PATH=$HOME/.linuxbrew/bin:$PATH
 export LD_LIBRARY_PATH=$HOME/.linuxbrew/lib:$LD_LIBRARY_PATH
-#export PATH=$HOME/.rbenv/bin:$PATH
+export PATH=$HOME/.meteor:$PATH
 
 # Our list of directorys we can cd to from anywhere
-export CDPATH=.:~/Sites:~/Code:~/src:~/Documents
+export CDPATH=.:~/workspace
 
 # Setup terminal, and turn on colors
 export TERM=xterm-color

@@ -74,6 +74,14 @@ namespace :install do
     EOF
   end
 
+  desc "Install Meteor"
+    task :meteor do
+    info_install 'meteor'
+    unless File.directory?('~/.meteor')
+      %x(curl https://install.meteor.com/ | sh)
+    end
+  end
+
   desc "Install/Update my Janus fork"
   task :vim do
     info_install 'Janus'
@@ -84,5 +92,5 @@ namespace :install do
     end
   end
   
-  task :all => [:zsh, :rbenv, :rubies, :custom, :brews, :vim]
+  task :all => [:zsh, :rbenv, :rubies, :custom, :brews, :meteor, :vim]
 end
