@@ -5,7 +5,9 @@ ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="mh"
+
+# https://github.com/hectorpalmatellez/furio-theme
+ZSH_THEME="furio"
 
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
@@ -29,21 +31,23 @@ ZSH_THEME="mh"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git rbenv rails textmate ruby)
+plugins=(git git-extras git-flow rbenv rails ruby meteor web-search brew)
 
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
 export PATH=/usr/local/bin:$PATH
 export PATH=/usr/local/sbin:$PATH
-export PATH=/usr/local/mysql/bin:$PATH
 export PATH=/usr/local/git/bin:$PATH
 export PATH=/bin:/usr/local/homebrew/bin:$PATH
 export PATH=$HOME/.rbenv/shims/bin:$PATH
 export PATH=$HOME/.rbenv/bin:$PATH
 
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"
+
 # Our list of directorys we can cd to from anywhere
-export CDPATH=.:~/Code:~/src:~/Documents
+export CDPATH=.:~/Code:~/Documents
 
 # Setup terminal, and turn on colors
 export TERM=xterm-color
@@ -59,6 +63,3 @@ export PAGER=less
 export LESS="-erX"
 
 export RUBYOPT=rubygems
-
-### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"

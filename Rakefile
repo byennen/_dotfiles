@@ -61,6 +61,7 @@ namespace :install do
     end
   end
 
+  desc "Install Homebrew"
   task :homebrew do
     info_install 'homebrew'
     puts 'You can ignore this message: "/usr/local/.git already exists!"'
@@ -75,13 +76,13 @@ namespace :install do
     EOF
   end
 
-  desc "Install/Update Janus"
-  task :vim do
-    info_install 'Janus'
-    if File.directory?('~/.vim')
-      %x(cd ~/.vim ; rake)
+  desc "Setup/Update Atom"
+  task :atom do
+    info_install 'Atom'
+    if File.directory?('~/.atom')
+      %x(rm -rf ~/.atom ; git clone git@github.com:byennen/atom-backup.git ~/.atom)
     else
-      %x(git clone git@github.com:carlhuda/janus.git ~/.vim ; cd ~/.vim ; rake)
+      %x(git clone git@github.com:byennen/atom-backup.git ~/.atom)
     end
   end
 
@@ -100,5 +101,5 @@ namespace :install do
     %x(curl https://install.meteor.com/ | sh)
   end
 
-  task :all => [:zsh, :rbenv, :rubies, :custom, :brews, :vim, :postgres, :meteor]
+  task :all => [:zsh, :rbenv, :rubies, :custom, :brews, :atom, :postgres, :meteor]
 end

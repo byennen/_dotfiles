@@ -1,8 +1,5 @@
 alias ls='ls -GFh'
 alias ll='ls -GFhl'
-alias rdoc='rdoc --ri --line-numbers --all'
-alias ri='ri -Tf ansi'
-alias cycle_passenger='touch tmp/restart.txt'
 
 alias g='git'
 alias gst='git status'
@@ -26,35 +23,9 @@ alias glog='git log --pretty=format:"%h - %an, %ar : %s"'
 alias glog_jim='git log --pretty="%ar - %h - %s" --author=jimiray --no-merges'
 
 alias gpatch='git diff master -p'
-# alias up='sake git:update' - need to priorities origin vs git-svn
-function gpall() {
-  git push rubyforge master --tags
-  git push origin master --tags
-}
 alias gitrm="git stat | grep deleted | awk '{print $3}' | xargs git rm"
 alias gitx="open -b nl.frim.GitX"
 
-export SVN_USER="lanceennen"
-alias sup='svn up'
-alias sst='svn st'
-alias sstu='svn st -u' # remote repository changes
-alias scom='svn commit' # commit
-alias svnclear='find . -name .svn -print0 | xargs -0 rm -rf' # removes all .svn folders from directory recursively
-alias svnaddall='svn status | grep "^\?" | awk "{print \$2}" | xargs svn add' # adds all unadded files
-
-alias svns='svn status'
-alias svnci='svn ci'
-alias svna='svn add'
-alias svnr='svn remove'
-alias svn_branch_start='svn log --verbose --stop-on-copy .'
-
-alias svnaddall='svn st | grep "?" | sed -e "s/? *//" | xargs svn add'
-
-#servers
-alias server='ssh -p 30000 byennen@67.23.27.131'
-
-# sites
-alias apex='cd $HOME/Sites/Apex'
 
 alias ss='rails server'
 alias ss2='rails server -p 3001 -e development tail-f log/development.log'
@@ -75,9 +46,6 @@ alias rf='rake features'
 alias log='tail -f -0 ./log/*.log'
 alias taildev='tail -f log/development.log'
 alias tailtest='tail -f log/test.log'
-
-# misc
-alias reload='. ~/.bash_profile'
 
 # directories
 alias code='cd $HOME/Code/'
