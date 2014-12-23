@@ -38,7 +38,7 @@
 [diff "ruby"]
   funcname = ^ *\\(\\(class\\|module\\|def\\) .*\\)
 [core]
-  editor = mine
+  editor = atom
   excludesfile = ~/.gitignore
 	whitespace = fix
 	quotepath = false
