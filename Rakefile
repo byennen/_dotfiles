@@ -103,14 +103,10 @@ namespace :install do
 
   desc "Dropbox Symlinks"
   task :dropbox do
-    info_install 'Dropbox Symlinks'
-      %x(ln -sf ~/Dropbox/Code ~/Code)
-      %x(sudo rm -rf ~/Documents ; ln -sf ~/Dropbox/Documents ~/Documents)
-    end
+  info_install 'Dropbox Symlinks'
+    %x(ln -sf ~/Dropbox/Code ~/Code)
+    %x(sudo rm -rf ~/Documents ; ln -sf ~/Dropbox/Documents ~/Documents)
   end
 
-
-  task :all => [:zsh, :rbenv, :rubies,
-                :custom, :brews, :atom,
-                :postgres, :meteor, dropbox]
+  task :all => [:zsh, :rbenv, :rubies, :homebrew, :custom, :brews, :atom, :postgres, :meteor, :dropbox]
 end
