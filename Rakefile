@@ -104,8 +104,7 @@ namespace :install do
   desc "iCloud Symlinks"
   task :icloud do
   info_install 'iCloud Symlinks'
-    %x(mkdir ~/Code)
-    %x(ln -sf ~/Library/Mobile Documents/com~apple~CloudDocs/Code/ ~/Code)
+    %x(ln -sf ~/Documents/Code/ ~/Code)
   end
 
   task :all => [:zsh, :rbenv, :rubies, :homebrew, :custom, :brews, :icloud]
