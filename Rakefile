@@ -56,8 +56,8 @@ namespace :install do
   desc "Install rubies"
   task :rubies do
     info_install 'rubies'
-    unless File.directory?('~/.rbenv/versions/2.1.5')
-      %x(rbenv rehash ; rbenv install 2.1.5)
+    unless File.directory?('~/.rbenv/versions/2.3.1')
+      %x(rbenv rehash ; rbenv install 2.3.1)
     end
   end
 
@@ -76,37 +76,38 @@ namespace :install do
     EOF
   end
 
-  desc "Setup/Update Atom"
-  task :atom do
-    info_install 'Atom'
-    if File.directory?('~/.atom')
-      %x(rm -rf ~/.atom ; git clone git@github.com:byennen/atom-backup.git ~/.atom)
-    else
-      %x(git clone git@github.com:byennen/atom-backup.git ~/.atom)
-    end
-  end
+  # desc "Setup/Update Atom"
+  # task :atom do
+  #   info_install 'Atom'
+  #   if File.directory?('~/.atom')
+  #     %x(rm -rf ~/.atom ; git clone git@github.com:byennen/atom-backup.git ~/.atom)
+  #   else
+  #     %x(git clone git@github.com:byennen/atom-backup.git ~/.atom)
+  #   end
+  # end
 
-  desc "Install Postgres"
-  task :postgres do
-    info_install 'postgres'
-    %x(brew install postgres)
-    %x(initdb /usr/local/var/postgres)
-    %x(ln -sfv /usr/local/opt/postgresql/*.plist ~/Library/LaunchAgents)
-    %x(launchctl load ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist)
-  end
+  # desc "Install Postgres"
+  # task :postgres do
+  #   info_install 'postgres'
+  #   %x(brew install postgres)
+  #   %x(initdb /usr/local/var/postgres)
+  #   %x(ln -sfv /usr/local/opt/postgresql/*.plist ~/Library/LaunchAgents)
+  #   %x(launchctl load ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist)
+  # end
 
-  desc "Install Meteor"
-  task :meteor do
-    info_install 'meteor'
-    %x(curl https://install.meteor.com/ | sh)
-  end
+  # desc "Install Meteor"
+  # task :meteor do
+  #   info_install 'meteor'
+  #   %x(curl https://install.meteor.com/ | sh)
+  # end
 
-  desc "Dropbox Symlinks"
-  task :dropbox do
-  info_install 'Dropbox Symlinks'
-    %x(ln -sf ~/Dropbox/Code ~/Code)
-    %x(sudo rm -rf ~/Documents ; ln -sf ~/Dropbox/Documents ~/Documents)
-  end
+  # desc "Dropbox Symlinks"
+  # task :dropbox do
+  # info_install 'Dropbox Symlinks'
+  #   %x(ln -sf ~/Dropbox/Code ~/Code)
+  #   %x(sudo rm -rf ~/Documents ; ln -sf ~/Dropbox/Documents ~/Documents)
+  # end
 
-  task :all => [:zsh, :rbenv, :rubies, :homebrew, :custom, :brews, :atom, :postgres, :meteor, :dropbox]
+  task :all => [:zsh, :rbenv, :rubies, :homebrew, :custom, :brews]
+  #:atom, :postgres, :meteor, :dropbox
 end
