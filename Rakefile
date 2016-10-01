@@ -101,13 +101,13 @@ namespace :install do
   #   %x(curl https://install.meteor.com/ | sh)
   # end
 
-  # desc "Dropbox Symlinks"
-  # task :dropbox do
-  # info_install 'Dropbox Symlinks'
-  #   %x(ln -sf ~/Dropbox/Code ~/Code)
-  #   %x(sudo rm -rf ~/Documents ; ln -sf ~/Dropbox/Documents ~/Documents)
-  # end
+  desc "iCloud Symlinks"
+  task :icloud do
+  info_install 'iCloud Symlinks'
+    %x(mkdir ~/Code)
+    %x(ln -sf ~/Library/Mobile Documents/com~apple~CloudDocs/Code/ ~/Code)
+  end
 
-  task :all => [:zsh, :rbenv, :rubies, :homebrew, :custom, :brews]
-  #:atom, :postgres, :meteor, :dropbox
+  task :all => [:zsh, :rbenv, :rubies, :homebrew, :custom, :brews, :icloud]
+  #:atom, :postgres, :meteor,
 end
