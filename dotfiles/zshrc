@@ -35,12 +35,12 @@ source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
 export PATH=/usr/local/bin:$PATH
-# export PATH=/usr/local/sbin:$PATH
-# export PATH=/usr/local/git/bin:$PATH
-# export PATH=/bin:/usr/local/homebrew/bin:$PATH
-# export PATH=$HOME/.rbenv/shims/bin:$PATH
-# export PATH=$HOME/.rbenv/bin:$PATH
-# export PATH=/usr/local/bin/node:$PATH
+export PATH=/usr/local/sbin:$PATH
+export PATH=/usr/local/bin/git:$PATH
+export PATH=/usr/local/bin/brew:$PATH
+export PATH=$HOME/.rbenv/shims/bin:$PATH
+export PATH=$HOME/.rbenv/bin:$PATH
+export PATH=/usr/local/bin/node:$PATH
 
 ### Added by the Heroku Toolbelt
 # export PATH="/usr/local/heroku/bin:$PATH"
